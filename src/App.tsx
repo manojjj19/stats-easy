@@ -1,13 +1,9 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { StatEasyHeader, StatEasyTab } from './components/StatEasyHeader';
 import { StatEasyHome } from './components/StatEasyHome';
 import { AnovaCalculatorView } from './components/AnovaCalculatorView';
 import { ProportionTestView } from './components/ProportionTestView';
+import { InteractiveSolver } from './components/InteractiveSolver';
 import { DatasetView } from './components/DatasetView';
 import { AboutProjectView } from './components/AboutProjectView';
 import { MeaningsGlossaryView } from './components/MeaningsGlossaryView';
@@ -17,37 +13,18 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
-      {/* Top Application Header */}
       <StatEasyHeader activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Main App Content View */}
       <main className="flex-1 pb-10">
-        {activeTab === 'home' && (
-          <StatEasyHome onNavigate={setActiveTab} />
-        )}
-
-        {activeTab === 'anova' && (
-          <AnovaCalculatorView />
-        )}
-
-        {activeTab === 'proportion' && (
-          <ProportionTestView />
-        )}
-
-        {activeTab === 'dataset' && (
-          <DatasetView onOpenAnova={() => setActiveTab('anova')} />
-        )}
-
-        {activeTab === 'meanings' && (
-          <MeaningsGlossaryView onNavigate={setActiveTab} />
-        )}
-
-        {activeTab === 'about' && (
-          <AboutProjectView onNavigate={setActiveTab} />
-        )}
+        {activeTab === 'home' && <StatEasyHome onNavigate={setActiveTab} />}
+        {activeTab === 'anova' && <AnovaCalculatorView />}
+        {activeTab === 'proportion' && <ProportionTestView />}
+        {activeTab === 'tests' && <InteractiveSolver />}
+        {activeTab === 'dataset' && <DatasetView onOpenAnova={() => setActiveTab('anova')} />}
+        {activeTab === 'meanings' && <MeaningsGlossaryView onNavigate={setActiveTab} />}
+        {activeTab === 'about' && <AboutProjectView onNavigate={setActiveTab} />}
       </main>
 
-      {/* Clean Bottom Footer */}
       <footer className="py-4 px-6 border-t border-slate-900 bg-slate-950 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span className="font-semibold text-slate-400">STATS EASY</span>

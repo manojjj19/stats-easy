@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import {
   Calculator,
   Percent,
@@ -23,7 +23,6 @@ export const StatEasyHeader: React.FC<StatEasyHeaderProps> = ({
 }) => {
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-8 py-3 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 shadow-md">
-      {/* Brand Wordmark */}
       <div className="flex items-center gap-3">
         <button
           onClick={() => setActiveTab('home')}
@@ -43,7 +42,6 @@ export const StatEasyHeader: React.FC<StatEasyHeaderProps> = ({
         </button>
       </div>
 
-      {/* Main Navigation Links */}
       <nav className="flex items-center gap-1 sm:gap-2 text-xs font-semibold text-slate-300">
         <button
           onClick={() => setActiveTab('home')}
@@ -130,7 +128,6 @@ export const StatEasyHeader: React.FC<StatEasyHeaderProps> = ({
         </button>
       </nav>
 
-      {/* Presenters Label */}
       <div className="hidden lg:flex items-center gap-2 text-xs font-mono text-slate-400">
         <span className="text-indigo-300 font-semibold">Manoj</span>
         <span className="text-slate-600">&</span>

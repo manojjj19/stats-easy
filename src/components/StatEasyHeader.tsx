@@ -7,9 +7,10 @@ import {
   GraduationCap,
   Sparkles,
   BookOpen,
+  FlaskConical,
 } from 'lucide-react';
 
-export type StatEasyTab = 'home' | 'anova' | 'proportion' | 'dataset' | 'meanings' | 'about';
+export type StatEasyTab = 'home' | 'anova' | 'proportion' | 'tests' | 'dataset' | 'meanings' | 'about';
 
 interface StatEasyHeaderProps {
   activeTab: StatEasyTab;
@@ -78,6 +79,18 @@ export const StatEasyHeader: React.FC<StatEasyHeaderProps> = ({
         >
           <Percent className="w-3.5 h-3.5 text-indigo-400" />
           <span>Proportion Test</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('tests')}
+          className={`flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3 rounded-lg transition-colors ${
+            activeTab === 'tests'
+              ? 'text-white bg-teal-600 font-bold shadow-sm shadow-teal-600/20'
+              : 'text-teal-400 hover:text-teal-300 hover:bg-slate-900'
+          }`}
+        >
+          <FlaskConical className="w-3.5 h-3.5 text-teal-400" />
+          <span>Hypothesis Tests</span>
         </button>
 
         <button

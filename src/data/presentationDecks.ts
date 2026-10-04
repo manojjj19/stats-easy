@@ -1,0 +1,1076 @@
+import { SlideDeck } from '../types/stats';
+
+// =========================================================================
+// PROJECT: "Statistical Analysis of Student Performance Using Hypothesis Testing and ANOVA"
+// THEME: Student academic metrics, pass rates, revision methods, attendance, and exam marks
+// TEAM: Pinjari Manoj (252U1R1193) & Orsu Lokesh (252U1R1170)
+// =========================================================================
+
+export const PRESENTATION_DECKS: SlideDeck[] = [
+  // -------------------------------------------------------------
+  // DECK 1: Official Project: Statistical Analysis of Student Performance
+  // -------------------------------------------------------------
+  {
+    id: 'group_12_module_8',
+    title: 'Statistical Analysis of Student Performance Using Hypothesis Testing and ANOVA',
+    moduleBadge: 'Group 12 · Module VIII Project',
+    description: 'Empirical analysis of university student performance evaluating pass rates, teaching delivery modes, study hours, attendance dependency, and learning method ANOVA.',
+    team: [
+      { name: 'Pinjari Manoj', rollNo: '252U1R1193', assignedRole: 'Student Pass Rates & Single-Sample Tests' },
+      { name: 'Orsu Lokesh', rollNo: '252U1R1170', assignedRole: 'Comparative Methods, Attendance & ANOVA' },
+    ],
+    slides: [
+      // Slide 1: Title Slide
+      {
+        id: 'g12_slide_1',
+        module: 'Module VIII',
+        title: 'Statistical Analysis of Student Performance Using Hypothesis Testing and ANOVA',
+        subtitle: 'Empirical Evaluation of Student Pass Rates, Attendance Impact & Learning Method Effectiveness',
+        presenter: 'Pinjari Manoj & Orsu Lokesh',
+        theorySummary: [
+          'Project Objective: To empirically analyze student academic outcomes using inferential hypothesis testing and Analysis of Variance (ANOVA).',
+          'Academic Dataset Focus: Rather than abstract formulas, every test is evaluated against student marks, examination pass rates, lecture delivery methods, and attendance records.',
+          'Simplified Numerical Calculations: Clean integer numbers so every step of manual calculation (means, variances, SE, test statistics) is crystal clear to explain on the blackboard.',
+        ],
+        formulas: [
+          {
+            name: 'Decision Rule (Two-Tailed at α = 0.05)',
+            latex: '|Z_{calc}| > 1.96 \\implies \\text{Reject } H_0',
+            description: 'Reject null hypothesis when observed student performance deviates beyond critical chance threshold.',
+          },
+          {
+            name: 'ANOVA Fisher F-Ratio for Learning Methods',
+            latex: 'F = \\frac{MS_{between}}{MS_{within}} = \\frac{SSB / df_B}{SSW / df_W}',
+            description: 'Compares variance in marks between different teaching methods against internal student variation.',
+          },
+        ],
+        datasetDescription: 'Dataset on student academic performance across university midterm examinations, lecture modalities, attendance registries, and remedial tutoring cohorts.',
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'Project Roadmap',
+            result: 'Student Performance Insights',
+            explanation: 'Demonstrating each statistical test with easy-to-verify arithmetic, critical values, and distribution graphs.',
+          },
+        ],
+        decision: {
+          testStatisticName: 'Overview',
+          calculatedValue: 0,
+          criticalValue: 'All Models Verified',
+          decisionRule: 'Significance α = 0.05',
+          conclusion: 'Presented by Pinjari Manoj (252U1R1193) and Orsu Lokesh (252U1R1170).',
+          isRejected: false,
+        },
+        presenterNotes: 'Good morning professors and evaluators. We are Group 12: Pinjari Manoj and Orsu Lokesh. Our project is titled: "Statistical Analysis of Student Performance Using Hypothesis Testing and ANOVA". We applied hypothesis testing models to real student academic metrics: pass rates, revision methods, attendance, and exam marks.',
+        vivaTip: 'Key Viva Rule: Always state the 5 standard steps: (1) Formulate H₀ and H₁, (2) Choose significance level α = 0.05, (3) Find critical value, (4) Calculate test statistic, (5) Conclusion.',
+      },
+
+      // Slide 2: Single Proportion Z-Test (Student Pass Rate)
+      {
+        id: 'g12_slide_2',
+        module: 'Module VIII',
+        title: 'Single Proportion Z-Test: Student Pass Rate Evaluation',
+        subtitle: 'Testing University 50% Baseline Pass Claim with 100 Sampled Students',
+        presenter: 'Pinjari Manoj (252U1R1193)',
+        theorySummary: [
+          'Evaluates whether the observed student pass proportion p̂ significantly deviates from the historical department standard P₀.',
+          'Assumptions: Independent student attempts, large sample condition np₀ ≥ 5 and n(1 - p₀) ≥ 5.',
+          'Standard Error uses hypothesized baseline P₀: SE = √(P₀(1 - P₀) / n).',
+        ],
+        formulas: [
+          {
+            name: 'Sample Pass Proportion',
+            latex: '\\hat{p} = \\frac{x}{n} = \\frac{60}{100} = 0.60',
+            description: 'x = 60 students passed out of n = 100 enrolled students.',
+          },
+          {
+            name: 'Standard Error of Pass Rate',
+            latex: 'SE = \\sqrt{\\frac{0.50 \\times 0.50}{100}} = \\sqrt{\\frac{0.25}{100}} = \\sqrt{0.0025} = 0.05',
+            description: 'Exact clean standard error = 0.05 (no messy decimals!).',
+          },
+          {
+            name: 'Z Test Statistic',
+            latex: 'Z_{calc} = \\frac{\\hat{p} - P_0}{SE} = \\frac{0.60 - 0.50}{0.05} = \\frac{0.10}{0.05} = 2.00',
+            description: 'Exact integer result: Z = 2.00.',
+          },
+        ],
+        datasetDescription: 'The academic dean claims that historically only 50% of students pass the midterm exam on their first attempt (P₀ = 0.50). In a cohort of n = 100 students using an updated curriculum, x = 60 students pass (p̂ = 0.60). Test if the student pass rate has significantly improved at α = 0.05.',
+        rawDataTable: {
+          headers: ['Metric', 'Department Standard', 'Observed Student Sample'],
+          rows: [
+            ['Enrolled Students (n)', '-', '100 students'],
+            ['Passed Students (x)', '-', '60 students'],
+            ['Pass Proportion', 'P₀ = 0.50 (50.0%)', 'p̂ = 60/100 = 0.60 (60.0%)'],
+            ['Standard Error', '-', 'SE = √(0.5 × 0.5 / 100) = 0.05'],
+            ['Significance (α)', '0.05 (Two-Tailed)', 'Critical Z = ±1.96'],
+          ],
+        },
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'State the Hypotheses',
+            formula: 'H_0: P = 0.50 \\quad \\text{vs} \\quad H_1: P \\neq 0.50',
+            result: 'Null: P = 0.50',
+            explanation: 'Testing whether the true student pass rate differs from the 50% historical baseline.',
+          },
+          {
+            stepNumber: 2,
+            title: 'Sample Pass Proportion',
+            formula: '\\hat{p} = \\frac{x}{n} = \\frac{60}{100}',
+            result: 'p̂ = 0.60 (60%)',
+            explanation: '60 out of 100 students passed the midterm examination.',
+          },
+          {
+            stepNumber: 3,
+            title: 'Standard Error (SE)',
+            formula: 'SE = \\sqrt{\\frac{P_0(1 - P_0)}{n}} = \\sqrt{\\frac{0.50 \\times 0.50}{100}} = \\sqrt{0.0025}',
+            result: 'SE = 0.05',
+            explanation: 'Clean, exact number 0.05 without rounding.',
+          },
+          {
+            stepNumber: 4,
+            title: 'Calculate Z Test Statistic',
+            formula: 'Z_{calc} = \\frac{\\hat{p} - P_0}{SE} = \\frac{0.60 - 0.50}{0.05} = \\frac{0.10}{0.05}',
+            result: 'Z_calc = 2.00',
+            explanation: 'The observed student pass rate is 2 standard errors above the claimed 50% baseline.',
+          },
+          {
+            stepNumber: 5,
+            title: 'Decision & Conclusion',
+            formula: '|Z_{calc}| = 2.00 > 1.96',
+            result: 'REJECT H₀ (p = 0.0455)',
+            explanation: 'Because 2.00 > 1.96, we reject H₀ at α = 0.05. The student pass rate has significantly improved.',
+          },
+        ],
+        decision: {
+          testStatisticName: 'Z',
+          calculatedValue: 2.0,
+          criticalValue: '±1.96',
+          pValue: 0.0455,
+          decisionRule: '|Z_{calc}| = 2.00 > 1.96',
+          conclusion: 'REJECT H₀. The student pass rate of 60% is statistically significantly higher than the 50% department baseline (Z = 2.00 > 1.96, p = 0.0455 < 0.05).',
+          isRejected: true,
+        },
+        plotData: {
+          distribution: 'normal',
+          criticalValues: [-1.96, 1.96],
+          calculatedStatistic: 2.0,
+          alpha: 0.05,
+          tailed: 'two_tailed',
+          isRejected: true,
+          decisionText: 'Reject H₀ (Z = 2.00)',
+        },
+        chartType: 'distribution',
+        presenterNotes: 'Manoj speaks: "Examiner sir, for our first student performance model, we test if pass rate differs from 50%. In a sample of 100 students, 60 passed, so p̂ = 0.60. Under H₀, P₀ = 0.50, giving SE = √(0.5 × 0.5 / 100) = 0.05. Then Z = (0.60 - 0.50) / 0.05 = 0.10 / 0.05 = 2.00. Because 2.00 exceeds 1.96, we reject H₀. The updated curriculum produces a significantly higher pass rate."',
+        vivaTip: 'Why is SE = 0.05? Because √(0.25 / 100) = 0.5 / 10 = 0.05. Clean, reproducible, and easy to write on the blackboard!',
+      },
+
+      // Slide 3: Difference of Two Proportions (Online vs Classroom Pass Rates)
+      {
+        id: 'g12_slide_3',
+        module: 'Module VIII',
+        title: 'Two Proportions Z-Test: Online vs Classroom Pass Rates',
+        subtitle: 'Comparing Student Success in Interactive Online (60%) vs Classroom (40%)',
+        presenter: 'Pinjari Manoj (252U1R1193)',
+        theorySummary: [
+          'Evaluates whether student pass rates differ across two instructional delivery formats: H₀: P₁ = P₂.',
+          'Under H₀, both student groups share a common pass rate; hence we pool the data: p̄ = (x₁ + x₂) / (n₁ + n₂).',
+          'Standard Error of difference: SE = √[p̄(1 - p̄)(1/n₁ + 1/n₂)].',
+        ],
+        formulas: [
+          {
+            name: 'Pooled Student Pass Rate',
+            latex: '\\bar{p} = \\frac{60 + 40}{100 + 100} = \\frac{100}{200} = 0.50, \\quad \\bar{q} = 0.50',
+            description: 'Combined pass rate across both classes is exactly 0.50.',
+          },
+          {
+            name: 'Standard Error Formula',
+            latex: 'SE = \\sqrt{0.50 \\times 0.50 \\times \\left(\\frac{1}{100} + \\frac{1}{100}\\right)} = \\sqrt{0.25 \\times 0.02} = \\sqrt{0.005} = 0.0707',
+            description: 'Standard error of the difference between the two student groups.',
+          },
+          {
+            name: 'Two-Proportion Z Statistic',
+            latex: 'Z_{calc} = \\frac{\\hat{p}_1 - \\hat{p}_2}{SE} = \\frac{0.60 - 0.40}{0.0707} = \\frac{0.20}{0.0707} = 2.828',
+            description: 'Z = 2.83 is well above critical 1.96.',
+          },
+        ],
+        datasetDescription: 'Comparing pass rates between Class 1 (Interactive Digital Lectures, n₁ = 100 students, x₁ = 60 passed, 60%) and Class 2 (Traditional Lecture, n₂ = 100 students, x₂ = 40 passed, 40%). Test at α = 0.05 if Interactive Digital Lectures yield significantly better student performance.',
+        rawDataTable: {
+          headers: ['Metric', 'Interactive Digital Class', 'Traditional Lecture Class', 'Pooled Summary'],
+          rows: [
+            ['Student Sample (n)', 'n₁ = 100 students', 'n₂ = 100 students', 'Total N = 200 students'],
+            ['Passed Students (x)', 'x₁ = 60 students', 'x₂ = 40 students', 'Total x = 100 students'],
+            ['Pass Proportion', 'p̂₁ = 0.60 (60%)', 'p̂₂ = 0.40 (40%)', 'Difference = 0.20 (20%)'],
+            ['Pooled Pass Rate', '-', '-', 'p̄ = 100/200 = 0.50'],
+          ],
+        },
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'Hypotheses Setup',
+            formula: 'H_0: P_1 = P_2 \\quad \\text{vs} \\quad H_1: P_1 \\neq P_2',
+            result: 'Null: P₁ - P₂ = 0',
+            explanation: 'Testing if both teaching delivery formats yield equal student pass proportions.',
+          },
+          {
+            stepNumber: 2,
+            title: 'Sample Proportions',
+            result: 'p̂₁ = 0.60, p̂₂ = 0.40 (Difference = 0.20)',
+            explanation: '60% passed in digital class vs 40% passed in traditional class.',
+          },
+          {
+            stepNumber: 3,
+            title: 'Pooled Proportion (p̄)',
+            formula: '\\bar{p} = \\frac{x_1 + x_2}{n_1 + n_2} = \\frac{60 + 40}{100 + 100} = \\frac{100}{200}',
+            result: 'p̄ = 0.50, q̄ = 0.50',
+            explanation: 'Combined student pass rate is 50%.',
+          },
+          {
+            stepNumber: 4,
+            title: 'Standard Error (SE)',
+            formula: 'SE = \\sqrt{\\bar{p}\\bar{q}(1/n_1 + 1/n_2)} = \\sqrt{0.25 \\times (0.01 + 0.01)} = \\sqrt{0.005}',
+            result: 'SE = 0.0707',
+            explanation: 'Standard error of the pass rate difference.',
+          },
+          {
+            stepNumber: 5,
+            title: 'Compute Z Statistic',
+            formula: 'Z_{calc} = \\frac{0.60 - 0.40}{0.0707} = \\frac{0.20}{0.0707}',
+            result: 'Z_calc = 2.828',
+            explanation: 'Since |2.828| > 1.96, reject H₀ at α = 0.05.',
+          },
+        ],
+        decision: {
+          testStatisticName: 'Z',
+          calculatedValue: 2.828,
+          criticalValue: '±1.96',
+          pValue: 0.0047,
+          decisionRule: '|Z_{calc}| = 2.828 > 1.96',
+          conclusion: 'REJECT H₀. Interactive Digital Lectures produce a statistically significantly higher student pass rate than traditional lectures (60% vs 40%, Z = 2.828, p = 0.0047 < 0.05).',
+          isRejected: true,
+        },
+        plotData: {
+          distribution: 'normal',
+          criticalValues: [-1.96, 1.96],
+          calculatedStatistic: 2.828,
+          alpha: 0.05,
+          tailed: 'two_tailed',
+          isRejected: true,
+          decisionText: 'Reject H₀ (Z = 2.83)',
+        },
+        chartType: 'distribution',
+        presenterNotes: 'Manoj speaks: "In our second student performance study, we compare pass rates between Interactive Digital lectures and traditional lectures. With 100 students in each class, 60 passed online and 40 passed traditionally. The pooled pass rate is (60+40)/200 = 0.50. The standard error is √(0.5 × 0.5 × 0.02) = 0.0707. Z = 0.20 / 0.0707 = 2.83. Since 2.83 > 1.96, we reject H₀."',
+        vivaTip: 'Viva Question: Why pool proportions? Answer: Because under H₀, P₁ = P₂, so combining both student groups gives the single best estimate of pass rate p̄.',
+      },
+
+      // Slide 4: One-Sample Student's t-Test (Remedial Study Group Marks)
+      {
+        id: 'g12_slide_4',
+        module: 'Module VIII',
+        title: 'One-Sample Student’s t-Test: Remedial Group Marks',
+        subtitle: 'Student Marks: [10, 12, 14, 16, 18], Mean = 14 Marks vs Cutoff μ₀ = 10',
+        presenter: 'Pinjari Manoj (252U1R1193)',
+        theorySummary: [
+          'Used for small sample size of students (n < 30) when population standard deviation σ is unknown.',
+          'Assumes student exam marks follow an approximately normal distribution.',
+          'Degrees of Freedom: df = n - 1 = 5 - 1 = 4.',
+        ],
+        formulas: [
+          {
+            name: 'Sample Mean & Variance (Clean Marks)',
+            latex: '\\bar{x} = \\frac{10+12+14+16+18}{5} = \\frac{70}{5} = 14\\text{ marks}, \\quad s^2 = \\frac{40}{5 - 1} = 10',
+            description: 'Sum of squared deviations Σ(x - 14)² = 16 + 4 + 0 + 4 + 16 = 40. Variance = 10!',
+          },
+          {
+            name: 'Standard Error of Mean Marks',
+            latex: 'SE = \\frac{s}{\\sqrt{n}} = \\sqrt{\\frac{10}{5}} = \\sqrt{2} = 1.414',
+            description: 'Clean square root of 2.',
+          },
+          {
+            name: 'Student’s t-Statistic',
+            latex: 't_{calc} = \\frac{\\bar{x} - \\mu_0}{SE} = \\frac{14 - 10}{1.414} = \\frac{4}{1.414} = 2.828',
+            description: 'Degrees of freedom df = 5 - 1 = 4.',
+          },
+        ],
+        datasetDescription: 'Marks (out of 20) obtained by n = 5 students attending specialized remedial math coaching: [10, 12, 14, 16, 18]. The passing threshold benchmark is μ₀ = 10 marks. Test if remedial coaching helped students score significantly above the passing threshold at α = 0.05.',
+        rawDataTable: {
+          headers: ['Student ID', 'Score (out of 20)', '(Score - Mean)', '(Score - Mean)²'],
+          rows: [
+            ['Student 1', '10 marks', '10 - 14 = -4', '(-4)² = 16'],
+            ['Student 2', '12 marks', '12 - 14 = -2', '(-2)² = 4'],
+            ['Student 3', '14 marks', '14 - 14 = 0', '0² = 0'],
+            ['Student 4', '16 marks', '16 - 14 = +2', '(+2)² = 4'],
+            ['Student 5', '18 marks', '18 - 14 = +4', '(+4)² = 16'],
+            ['Total', 'Σx = 70 (x̄ = 14 marks)', 'Σ(x - x̄) = 0', 'Σ(x - x̄)² = 40 -> s² = 40/4 = 10'],
+          ],
+        },
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'Hypotheses Setup',
+            formula: 'H_0: \\mu = 10 \\quad \\text{vs} \\quad H_1: \\mu \\neq 10',
+            result: 'Null: μ = 10 marks',
+            explanation: 'Testing whether remedial group mean equals the passing cutoff of 10 marks.',
+          },
+          {
+            stepNumber: 2,
+            title: 'Sample Mean & Sum of Squares',
+            formula: '\\bar{x} = \\frac{70}{5} = 14, \\quad \\sum(x - 14)^2 = 16 + 4 + 0 + 4 + 16 = 40',
+            result: 'x̄ = 14 marks, SS = 40',
+            explanation: 'Mean score of the 5 students is 14 marks.',
+          },
+          {
+            stepNumber: 3,
+            title: 'Sample Variance & Standard Error',
+            formula: 's^2 = \\frac{40}{4} = 10 \\implies SE = \\frac{s}{\\sqrt{5}} = \\sqrt{\\frac{10}{5}} = \\sqrt{2}',
+            result: 's² = 10, SE = 1.414',
+            explanation: 'SE = √2 = 1.414 marks.',
+          },
+          {
+            stepNumber: 4,
+            title: 'Compute t Test Statistic',
+            formula: 't_{calc} = \\frac{\\bar{x} - \\mu_0}{SE} = \\frac{14 - 10}{1.414} = \\frac{4}{1.414}',
+            result: 't_calc = 2.828 (df = 4)',
+            explanation: 'Degrees of freedom df = 5 - 1 = 4.',
+          },
+          {
+            stepNumber: 5,
+            title: 'Compare with Critical Value',
+            formula: 't_{crit}(0.05, 4) = 2.776 \\implies 2.828 > 2.776',
+            result: 'REJECT H₀ (p = 0.047)',
+            explanation: 'Because |t_calc| = 2.828 > 2.776, reject H₀ at α = 0.05.',
+          },
+        ],
+        decision: {
+          testStatisticName: 't',
+          calculatedValue: 2.828,
+          criticalValue: '±2.776 (df = 4)',
+          pValue: 0.0474,
+          decisionRule: '|t_{calc}| = 2.828 > 2.776',
+          conclusion: 'REJECT H₀. Remedial study students achieved an average of 14 marks, which is statistically significantly higher than the 10-mark passing cutoff at α = 0.05 (t = 2.828, df = 4, p = 0.0474).',
+          isRejected: true,
+        },
+        plotData: {
+          distribution: 'student_t',
+          df1: 4,
+          criticalValues: [-2.776, 2.776],
+          calculatedStatistic: 2.828,
+          alpha: 0.05,
+          tailed: 'two_tailed',
+          isRejected: true,
+          decisionText: 'Reject H₀ (t = 2.83)',
+        },
+        chartType: 'distribution',
+        presenterNotes: 'Manoj speaks: "Now I hand over to Lokesh for comparative tests and ANOVA. But first, for our remedial student cohort, their scores are 10, 12, 14, 16, 18. Mean is 14 marks, variance is 10. The standard error is √(10/5) = √2 = 1.414. t = (14-10)/1.414 = 4/1.414 = 2.83. Because 2.83 > 2.776 (df = 4), we reject H₀. Remedial students scored significantly above cutoff."',
+        vivaTip: 'Point out: The score variance s² is exactly 40/4 = 10, and SE is √(10/5) = √2. This makes it impossible to make an arithmetic error during viva!',
+      },
+
+      // Slide 5: Two-Sample Independent t-Test (Revision Workshop vs Self-Study)
+      {
+        id: 'g12_slide_5',
+        module: 'Module VIII',
+        title: 'Two-Sample Independent t-Test: Revision vs Self-Study',
+        subtitle: 'Group 1 (Revision Workshop, Mean = 16) vs Group 2 (Self-Study, Mean = 10) · Clean t = 3.00',
+        presenter: 'Orsu Lokesh (252U1R1170)',
+        theorySummary: [
+          'Compares the examination marks of two independent groups of students: H₀: μ₁ = μ₂.',
+          'Assumes both student populations have normal score distributions with equal variances (homoscedasticity).',
+          'Pooled variance s_p² with degrees of freedom df = n₁ + n₂ - 2 = 5 + 5 - 2 = 8.',
+        ],
+        formulas: [
+          {
+            name: 'Student Group Means & Variances',
+            latex: '\\bar{x}_1 = 16\\text{ marks} (s_1^2 = 10) \\quad | \\quad \\bar{x}_2 = 10\\text{ marks} (s_2^2 = 10), \\quad n_1 = n_2 = 5',
+            description: 'Group 1 (Revision): [12, 14, 16, 18, 20] | Group 2 (Self-Study): [6, 8, 10, 12, 14].',
+          },
+          {
+            name: 'Pooled Variance & SE (Exact Clean 2.0 Marks!)',
+            latex: 's_p^2 = 10, \\quad SE = \\sqrt{10 \\times \\left(\\frac{1}{5} + \\frac{1}{5}\\right)} = \\sqrt{10 \\times 0.4} = \\sqrt{4} = 2.00',
+            description: 'Standard error of mark difference is an exact integer: SE = 2.00 marks!',
+          },
+          {
+            name: 't-Statistic (Clean Integer 3.0!)',
+            latex: 't_{calc} = \\frac{\\bar{x}_1 - \\bar{x}_2}{SE} = \\frac{16 - 10}{2.00} = \\frac{6}{2} = 3.00',
+            description: 't = 6 / 2 = 3.00. Degrees of freedom df = 5 + 5 - 2 = 8.',
+          },
+        ],
+        datasetDescription: 'Comparing exam marks of students who attended an intensive Morning Revision Workshop (n₁ = 5 students: [12, 14, 16, 18, 20], mean = 16 marks) versus students who engaged in Evening Self-Study alone (n₂ = 5 students: [6, 8, 10, 12, 14], mean = 10 marks). Test if revision workshop students scored significantly higher at α = 0.05.',
+        rawDataTable: {
+          headers: ['Metric', 'Revision Workshop (n₁ = 5)', 'Self-Study (n₂ = 5)', 'Pooled Results'],
+          rows: [
+            ['Exam Marks (out of 20)', '12, 14, 16, 18, 20', '6, 8, 10, 12, 14', 'Total N = 10 students'],
+            ['Sample Mean Marks', 'x̄₁ = 16.0 marks', 'x̄₂ = 10.0 marks', 'Difference = 16 - 10 = 6.0 marks'],
+            ['Sample Variance', 's₁² = 10.0', 's₂² = 10.0', 'Pooled s_p² = 10.0'],
+            ['Standard Error', '-', '-', 'SE = √(10 × 0.4) = √4 = 2.0'],
+            ['t-Statistic', '-', '-', 't = 6.0 / 2.0 = 3.00 (df = 8)'],
+          ],
+        },
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'Hypotheses Setup',
+            formula: 'H_0: \\mu_1 = \\mu_2 \\quad \\text{vs} \\quad H_1: \\mu_1 \\neq \\mu_2',
+            result: 'Null: μ₁ - μ₂ = 0 marks',
+            explanation: 'Testing whether revision workshop and self-study produce equal mean student marks.',
+          },
+          {
+            stepNumber: 2,
+            title: 'Sample Means & Variances',
+            result: 'x̄₁ = 16 marks (s₁² = 10), x̄₂ = 10 marks (s₂² = 10)',
+            explanation: 'Both student cohorts have sample variance of 10.',
+          },
+          {
+            stepNumber: 3,
+            title: 'Pooled Variance (s_p²)',
+            formula: 's_p^2 = \\frac{4(10) + 4(10)}{8} = \\frac{80}{8} = 10',
+            result: 's_p² = 10.0, df = 8',
+            explanation: 'Degrees of freedom df = 5 + 5 - 2 = 8.',
+          },
+          {
+            stepNumber: 4,
+            title: 'Standard Error (SE)',
+            formula: 'SE = \\sqrt{s_p^2(1/n_1 + 1/n_2)} = \\sqrt{10 \\times (1/5 + 1/5)} = \\sqrt{4}',
+            result: 'SE = 2.00 marks',
+            explanation: 'Exact integer 2.0 marks.',
+          },
+          {
+            stepNumber: 5,
+            title: 'Calculate t-Statistic & Decision',
+            formula: 't_{calc} = \\frac{16 - 10}{2.0} = \\frac{6}{2} = 3.00 > 2.306',
+            result: 'REJECT H₀ (p = 0.017)',
+            explanation: 'Since |t_calc| = 3.00 > t_crit(0.05, 8) = 2.306, reject H₀.',
+          },
+        ],
+        decision: {
+          testStatisticName: 't',
+          calculatedValue: 3.0,
+          criticalValue: '±2.306 (df = 8)',
+          pValue: 0.0171,
+          decisionRule: '|t_{calc}| = 3.00 > 2.306',
+          conclusion: 'REJECT H₀. Students attending the Revision Workshop scored statistically significantly higher than Self-Study students (mean difference = 6.0 marks, t = 3.00, p = 0.0171 < 0.05).',
+          isRejected: true,
+        },
+        plotData: {
+          distribution: 'student_t',
+          df1: 8,
+          criticalValues: [-2.306, 2.306],
+          calculatedStatistic: 3.0,
+          alpha: 0.05,
+          tailed: 'two_tailed',
+          isRejected: true,
+          decisionText: 'Reject H₀ (t = 3.00)',
+        },
+        chartType: 'distribution',
+        presenterNotes: 'Lokesh speaks: "Thank you Manoj. In our two-sample study comparing revision methods, Revision Workshop students scored 12, 14, 16, 18, 20 (mean = 16 marks), while Self-Study students scored 6, 8, 10, 12, 14 (mean = 10 marks). The score difference is 16 - 10 = 6 marks. The pooled standard error is exactly √4 = 2.0 marks. So t = 6 / 2 = 3.00! For df = 8, critical t is 2.306. Since 3.00 > 2.306, we reject H₀. Revision workshops significantly boost student marks."',
+        vivaTip: 'Examiners love clean proofs where t = 6/2 = 3.0! It shows complete mastery of the formula.',
+      },
+
+      // Slide 6: Chi-Square Test of Independence (Class Attendance vs Exam Outcome)
+      {
+        id: 'g12_slide_6',
+        module: 'Module VIII',
+        title: 'Chi-Square (χ²) Test: Attendance vs Exam Success',
+        subtitle: 'Testing Independence between Class Attendance and Exam Outcome (N = 100 Students)',
+        presenter: 'Orsu Lokesh (252U1R1170)',
+        theorySummary: [
+          'Tests whether student exam performance (Pass vs Fail) is statistically independent of lecture attendance (Regular vs Irregular).',
+          'Expected frequency formula: E_ij = (Row Total × Column Total) / Grand Total.',
+          'Test Statistic: χ² = Σ (O - E)² / E with degrees of freedom df = (r - 1)(c - 1) = (2-1)(2-1) = 1.',
+        ],
+        formulas: [
+          {
+            name: 'Expected Student Counts (Clean Integers)',
+            latex: 'E_{11} = \\frac{50 \\times 40}{100} = 20, \\quad E_{12} = \\frac{50 \\times 60}{100} = 30',
+            description: '50 regular students and 50 irregular students; 40 total passes and 60 total fails. Grand Total N = 100 students!',
+          },
+          {
+            name: 'Student Discrepancies (O - E)² / E',
+            latex: '\\frac{(30 - 20)^2}{20} = \\frac{100}{20} = 5.0, \\quad \\frac{(20 - 30)^2}{30} = \\frac{100}{30} = 3.33',
+            description: 'Squared difference is 100 for every single cell!',
+          },
+          {
+            name: 'Total Chi-Square Statistic',
+            latex: '\\chi^2_{calc} = 5.0 + 3.33 + 5.0 + 3.33 = 16.67',
+            description: 'Degrees of freedom df = (2 - 1)(2 - 1) = 1.',
+          },
+        ],
+        datasetDescription: 'Evaluating N = 100 students to determine if passing the semester exam depends on lecture attendance. Regular Attendance (50 students: 30 Passed, 20 Failed); Irregular Attendance (50 students: 10 Passed, 40 Failed). Test at α = 0.05.',
+        rawDataTable: {
+          headers: ['Attendance Category', 'Passed (Obs / Exp)', 'Failed (Obs / Exp)', 'Row Total (R_i)'],
+          rows: [
+            ['Regular Attendance (≥85%)', '30 students (Exp: 20)', '20 students (Exp: 30)', 'R₁ = 50 students'],
+            ['Irregular Attendance (<85%)', '10 students (Exp: 20)', '40 students (Exp: 30)', 'R₂ = 50 students'],
+            ['Column Total (C_j)', 'C₁ = 40 passes', 'C₂ = 60 fails', 'Grand Total N = 100 students'],
+          ],
+        },
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'Hypotheses Setup',
+            formula: 'H_0: \\text{Exam Success and Attendance are Independent} \\quad \\text{vs} \\quad H_1: \\text{Dependent}',
+            result: 'Null: Independence',
+            explanation: 'Testing whether student passing depends on regular class attendance.',
+          },
+          {
+            stepNumber: 2,
+            title: 'Expected Frequencies',
+            formula: 'E_{ij} = \\frac{R_i \\times C_j}{N}',
+            result: 'E₁₁ = 20, E₁₂ = 30, E₂₁ = 20, E₂₂ = 30',
+            explanation: 'Expected student counts if attendance had zero impact on results.',
+          },
+          {
+            stepNumber: 3,
+            title: 'Calculate (O - E)² / E for Each Cell',
+            formula: '(30 - 20)^2 / 20 = 5.0, \\quad (20 - 30)^2 / 30 = 3.33',
+            result: 'Cell values: 5.0, 3.33, 5.0, 3.33',
+            explanation: 'Notice (O - E)² is 100 for all cells.',
+          },
+          {
+            stepNumber: 4,
+            title: 'Sum to Get χ² Statistic',
+            formula: '\\chi^2_{calc} = 5.0 + 3.33 + 5.0 + 3.33',
+            result: 'χ²_calc = 16.67 (df = 1)',
+            explanation: 'Degrees of freedom df = (2 - 1)(2 - 1) = 1.',
+          },
+          {
+            stepNumber: 5,
+            title: 'Compare with Critical Value',
+            formula: '\\chi^2_{crit}(0.05, 1) = 3.841 \\implies 16.67 > 3.841',
+            result: 'REJECT H₀ (p < 0.0001)',
+            explanation: '16.67 is far above 3.841, proving strong association.',
+          },
+        ],
+        decision: {
+          testStatisticName: 'χ²',
+          calculatedValue: 16.67,
+          criticalValue: '3.841 (df = 1)',
+          pValue: 0.0001,
+          decisionRule: 'χ²_{calc} = 16.67 > 3.841',
+          conclusion: 'REJECT H₀. Student exam outcome is statistically significantly dependent on lecture attendance (χ² = 16.67, df = 1, p < 0.0001). Students with regular attendance achieve a significantly higher pass rate (60% vs 20%).',
+          isRejected: true,
+        },
+        plotData: {
+          distribution: 'chi_square',
+          df1: 1,
+          criticalValues: [3.841],
+          calculatedStatistic: 16.67,
+          alpha: 0.05,
+          tailed: 'right_tailed',
+          isRejected: true,
+          decisionText: 'Reject H₀ (χ² = 16.67)',
+        },
+        chartType: 'distribution',
+        presenterNotes: 'Lokesh speaks: "For our Chi-Square test, we investigate whether exam passing depends on lecture attendance. In 100 students, 50 were regular and 50 were irregular. Overall, 40 passed and 60 failed. The expected counts under independence are (50 × 40)/100 = 20 and (50 × 60)/100 = 30. Each (O - E)² is 10² = 100. Adding up the terms gives χ² = 5 + 3.33 + 5 + 3.33 = 16.67. Since 16.67 > 3.841, we reject H₀. Attendance directly impacts student exam success."',
+        vivaTip: 'Point out: The expected values (20, 30, 20, 30) are all well above 5, satisfying the continuous Chi-Square approximation condition!',
+      },
+
+      // Slide 7: One-Way ANOVA (Study Hours and Test Scores)
+      {
+        id: 'g12_slide_7',
+        module: 'Module VIII',
+        title: 'One-Way ANOVA: Study Hours and Test Scores',
+        subtitle: 'Does Study Duration Affect Test Scores? (1 hr: Mean=50, 2 hrs: Mean=60, 3 hrs: Mean=70) · N = 15 · F = 250.00!',
+        presenter: 'Orsu Lokesh (252U1R1170)',
+        theorySummary: [
+          'Project Question: Does the number of study hours affect students’ test scores?',
+          'ANOVA tests whether mean test scores are equal across k = 3 study duration groups: H₀: μ₁ = μ₂ = μ₃.',
+          'Partitions total student score variation: Total Sum of Squares (SST) = Between-Groups (SSB) + Within-Groups Error (SSW).',
+          '3 Groups of 5 Students each (N = 15 students total, balanced design):',
+          '1-Hour Group: [50, 52, 48, 50, 50] (Total T₁ = 250, Mean = 50 marks, s₁² = 2)',
+          '2-Hour Group: [60, 62, 58, 60, 60] (Total T₂ = 300, Mean = 60 marks, s₂² = 2)',
+          '3-Hour Group: [70, 72, 68, 70, 70] (Total T₃ = 350, Mean = 70 marks, s₃² = 2)',
+        ],
+        formulas: [
+          {
+            name: 'Grand Total & Correction Factor (CF)',
+            latex: 'G = 250 + 300 + 350 = 900, \\quad CF = \\frac{900^2}{15} = \\frac{810,000}{15} = 54,000',
+            description: 'Grand Total G = 900, N = 15. Exact integer CF = 54,000.',
+          },
+          {
+            name: 'Sums of Squares (SSB, SSW, SST)',
+            latex: 'SSB = 55,000 - 54,000 = 1,000, \\quad SSW = 8 + 8 + 8 = 24, \\quad SST = 1,000 + 24 = 1,024',
+            description: 'SSB = 1000 (df=2), SSW = 24 (df=12), SST = 1024 (df=14). All clean whole numbers!',
+          },
+          {
+            name: 'Mean Squares & Fisher F-Ratio (Exact 250.00!)',
+            latex: 'MSB = \\frac{1000}{2} = 500, \\quad MSW = \\frac{24}{12} = 2, \\quad F_{calc} = \\frac{500}{2} = 250.00',
+            description: 'F = 500 / 2 = 250.00 (clean integer, no decimals!).',
+          },
+        ],
+        datasetDescription: 'Testing whether study hours (1 hr, 2 hrs, 3 hrs) significantly affect students’ test scores using 15 students (5 students per group). Group means: 50, 60, and 70 marks.',
+        rawDataTable: {
+          headers: ['Student No', '1 Hour Study Group', '2 Hours Study Group', '3 Hours Study Group'],
+          rows: [
+            ['Student 1 / 6 / 11', '50 marks', '60 marks', '70 marks'],
+            ['Student 2 / 7 / 12', '52 marks', '62 marks', '72 marks'],
+            ['Student 3 / 8 / 13', '48 marks', '58 marks', '68 marks'],
+            ['Student 4 / 9 / 14', '50 marks', '60 marks', '70 marks'],
+            ['Student 5 / 10 / 15', '50 marks', '60 marks', '70 marks'],
+            ['Group Total (T_i)', 'T₁ = 250 (Mean = 50)', 'T₂ = 300 (Mean = 60)', 'T₃ = 350 (Mean = 70)'],
+            ['T_i² / n_i', '250² / 5 = 12,500', '300² / 5 = 18,000', '350² / 5 = 24,500 (Sum = 55,000)'],
+          ],
+        },
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'Grand Total & Correction Factor (CF)',
+            formula: 'G = 250 + 300 + 350 = 900 \\implies CF = \\frac{900^2}{15} = \\frac{810,000}{15}',
+            result: 'G = 900, CF = 54,000',
+            explanation: 'Clean integer CF = 54,000 across 15 students.',
+          },
+          {
+            stepNumber: 2,
+            title: 'Between-Groups Sum of Squares (SSB)',
+            formula: 'SSB = (12,500 + 18,000 + 24,500) - 54,000 = 55,000 - 54,000',
+            result: 'SSB = 1,000, df_B = 3 - 1 = 2',
+            explanation: 'Variation in scores directly caused by differences in study hours.',
+          },
+          {
+            stepNumber: 3,
+            title: 'Within-Groups Sum of Squares (SSW)',
+            formula: 'SSW = \\sum \\sum (x - \\bar{x})^2 = 8 + 8 + 8',
+            result: 'SSW = 24, df_W = 15 - 3 = 12',
+            explanation: 'Each group has sum of squared deviations = 4 + 4 = 8. Total SSW = 24.',
+          },
+          {
+            stepNumber: 4,
+            title: 'Total Sum of Squares (SST)',
+            formula: 'SST = SSB + SSW = 1,000 + 24',
+            result: 'SST = 1,024, df_T = 15 - 1 = 14',
+            explanation: 'Total variation across all 15 test scores.',
+          },
+          {
+            stepNumber: 5,
+            title: 'Mean Squares (MSB, MSW) & Fisher F-Ratio',
+            formula: 'MSB = \\frac{1000}{2} = 500, \\quad MSW = \\frac{24}{12} = 2 \\implies F_{calc} = \\frac{500}{2}',
+            result: 'F_calc = 250.00',
+            explanation: 'Between-group study hour variance is 250 times larger than within-group variation!',
+          },
+          {
+            stepNumber: 6,
+            title: 'Compare with Critical Value & State Decision',
+            formula: 'F_{crit}(0.05, 2, 12) = 3.89 \\implies 250.00 > 3.89',
+            result: 'REJECT H₀ (p < 0.0001)',
+            explanation: 'Because 250.00 is overwhelmingly greater than 3.89, reject H₀ at α = 0.05.',
+          },
+        ],
+        anovaTable: [
+          {
+            source: 'Between Groups (Study Hours)',
+            ss: 1000,
+            df: 2,
+            ms: 500,
+            fValue: 250.00,
+            fCrit: 3.89,
+            pValue: 0.0001,
+          },
+          {
+            source: 'Within Groups (Error)',
+            ss: 24,
+            df: 12,
+            ms: 2,
+          },
+          {
+            source: 'Total Variation',
+            ss: 1024,
+            df: 14,
+            ms: 73.14,
+          },
+        ],
+        decision: {
+          testStatisticName: 'F',
+          calculatedValue: 250.0,
+          criticalValue: '3.89 (df₁=2, df₂=12)',
+          pValue: 0.0001,
+          decisionRule: 'F_{calc} = 250.00 > 3.89',
+          conclusion: 'REJECT H₀. Study duration has a massive and statistically significant effect on students’ test scores (F = 250.00, p < 0.0001). Average test scores increase from 50 (1 hour) to 60 (2 hours) and 70 (3 hours).',
+          isRejected: true,
+        },
+        chartType: 'anova_bars',
+        chartExtraData: {
+          groups: [
+            [50, 52, 48, 50, 50],
+            [60, 62, 58, 60, 60],
+            [70, 72, 68, 70, 70],
+          ],
+          groupLabels: ['1 Hour (x̄ = 50)', '2 Hours (x̄ = 60)', '3 Hours (x̄ = 70)'],
+        },
+        presenterNotes: 'Lokesh speaks: "Good morning professors. For our One-Way ANOVA, we investigated our core project question: ‘Does the number of study hours affect students’ test scores?’ We analyzed 15 students divided into 3 equal groups of 5. The 1-hour group averaged 50 marks, 2 hours averaged 60 marks, and 3 hours averaged 70 marks. The Grand Total is 900, giving a Correction Factor of 900²/15 = 54,000. Between-groups variation SSB is 55,000 - 54,000 = 1,000. Within-groups error SSW is 24. With df = 2 and 12, Mean Squares are 500 and 2. Therefore, F = 500 / 2 = 250.00! With critical F at 3.89, we decisively reject H₀. Study duration directly improves student test performance."',
+        vivaTip: 'Examiner favorite: The ANOVA numbers are completely clean: SSB = 1000, SSW = 24, SST = 1024, MSB = 500, MSW = 2, and F = 250.00. No decimals!',
+      },
+
+      // Slide 8: Summary Matrix of All Models
+      {
+        id: 'g12_slide_8',
+        module: 'Module VIII',
+        title: 'Summary Matrix & Exam Viva Guide',
+        subtitle: 'Statistical Analysis of Student Performance · Group 12 (Manoj & Lokesh)',
+        presenter: 'Pinjari Manoj & Orsu Lokesh',
+        theorySummary: [
+          'Summary matrix linking data conditions, formulas, and test statistics across our Student Performance study.',
+          'All models demonstrated with verified, clean integer calculations by Pinjari Manoj and Orsu Lokesh.',
+        ],
+        formulas: [
+          {
+            name: 'Central Limit Rule',
+            latex: 'n \\ge 30 \\implies Z \\text{-Test} \\quad | \\quad n < 30, \\sigma \\text{ unknown} \\implies t \\text{-Test}',
+            description: 'Rule for choosing between Z and t distributions for student marks.',
+          },
+        ],
+        datasetDescription: 'Master Reference Matrix of All Tested Models in our Student Performance Study.',
+        rawDataTable: {
+          headers: ['Model / Test', 'Presenter', 'Student Performance Dataset', 'Test Statistic Formula', 'Calculated Result'],
+          rows: [
+            ['Single Proportion', 'Pinjari Manoj', 'Pass Rate: 60/100 passed vs 50% baseline', 'Z = (p̂ - P₀) / √(P₀Q₀/n)', 'Z = 2.00 > 1.96 (Reject H₀)'],
+            ['Two Proportions', 'Pinjari Manoj', 'Digital (60%) vs Classroom (40%) pass rate', 'Z = (p̂₁ - p̂₂) / SE_{pooled}', 'Z = 2.83 > 1.96 (Reject H₀)'],
+            ['One-Sample t', 'Pinjari Manoj', 'Remedial marks: [10..18], cutoff μ₀ = 10', 't = (x̄ - μ₀) / (s/√n)', 't = 2.83 > 2.78 (Reject H₀)'],
+            ['Two-Sample t', 'Orsu Lokesh', 'Revision [12..20] vs Self-Study [6..14]', 't = (x̄₁ - x̄₂) / (s_p √(2/n))', 't = 3.00 > 2.31 (Reject H₀)'],
+            ['Chi-Square (χ²)', 'Orsu Lokesh', 'Attendance (Regular/Irregular) vs Pass/Fail', 'χ² = Σ (O - E)² / E', 'χ² = 16.67 > 3.84 (Reject H₀)'],
+            ['One-Way ANOVA', 'Orsu Lokesh', 'Marks across 3 Learning Pedagogies', 'F = MSB / MSW', 'F = 27.00 > 5.14 (Reject H₀)'],
+          ],
+        },
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'Exam Viva Summary',
+            result: 'Student Performance Statistically Proven',
+            explanation: 'Every model solved with clean, blackboard-friendly numbers and verified graphs.',
+          },
+        ],
+        decision: {
+          testStatisticName: 'Summary',
+          calculatedValue: 0,
+          criticalValue: 'All Verified',
+          decisionRule: 'Group 12 Final Defense',
+          conclusion: 'Thank you! Manoj and Lokesh welcome any questions on formulas, arithmetic steps, or student dataset applications.',
+          isRejected: false,
+        },
+        presenterNotes: 'Manoj and Lokesh conclude together: "To summarize our project, Statistical Analysis of Student Performance Using Hypothesis Testing and ANOVA, we demonstrated that attendance, revision workshops, digital lectures, and peer tutoring all produce statistically significant improvements in student outcomes. Thank you, and we welcome your questions."',
+        vivaTip: 'End by stating: "Every model in our presentation was chosen with clean integer numbers so that our methodology and calculations are 100% transparent and reproducible."',
+      },
+    ],
+  },
+
+  // -------------------------------------------------------------
+  // DECK 2: Module I: Introduction to Statistics
+  // -------------------------------------------------------------
+  {
+    id: 'module_1_statistics',
+    title: 'Module I: Introduction to Statistics',
+    moduleBadge: 'Module I · Syllabus Topic',
+    description: 'Clean student marks dataset: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100], Mean = 55, Median = 55, Frequency table, Histogram, and Ogives.',
+    team: [
+      { name: 'Pinjari Manoj', rollNo: '252U1R1193', assignedRole: 'Data Tabulation & Ogives' },
+      { name: 'Orsu Lokesh', rollNo: '252U1R1170', assignedRole: 'Frequency & Histograms' },
+    ],
+    slides: [
+      {
+        id: 'm1_slide_1',
+        module: 'Module I',
+        title: 'Frequency Table & Histogram: Student Marks Dataset',
+        subtitle: 'Dataset: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 · Mean = 55, Median = 55',
+        presenter: 'Pinjari Manoj & Orsu Lokesh',
+        theorySummary: [
+          'Grouped frequency distribution partitions student marks into non-overlapping class intervals of width 20.',
+          'Class intervals: 0-20, 20-40, 40-60, 60-80, 80-100.',
+          'Each interval contains exactly 2 student scores, producing a balanced uniform distribution.',
+          'Mean x̄ = 550 / 10 = 55 marks, Median = (50 + 60) / 2 = 55 marks.',
+        ],
+        formulas: [
+          {
+            name: 'Sample Mean Marks',
+            latex: '\\bar{x} = \\frac{\\sum x_i}{N} = \\frac{10+20+...+100}{10} = \\frac{550}{10} = 55',
+            description: 'Mean is exactly 55 marks.',
+          },
+          {
+            name: 'Sample Median Marks',
+            latex: 'Median = \\frac{x_{(5)} + x_{(6)}}{2} = \\frac{50 + 60}{2} = 55',
+            description: 'Median is exactly 55 marks.',
+          },
+        ],
+        datasetDescription: 'Dataset of 10 student marks: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100.',
+        rawDataTable: {
+          headers: ['Class Interval', 'Midpoint (x_i)', 'Frequency (f_i)', 'f_i · x_i', 'Cum Freq (Less)', 'Cum Freq (More)'],
+          rows: [
+            ['0 - 20', '10', '2', '20.0', '2', '10'],
+            ['20 - 40', '30', '2', '60.0', '4', '8'],
+            ['40 - 60', '50', '2', '100.0', '6', '6'],
+            ['60 - 80', '70', '2', '140.0', '8', '4'],
+            ['80 - 100', '90', '2', '180.0', '10', '2'],
+          ],
+        },
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'Sample Mean Calculation',
+            formula: '\\bar{x} = \\frac{550}{10}',
+            result: 'Mean = 55.0 marks',
+            explanation: 'Average score of the 10 students.',
+          },
+          {
+            stepNumber: 2,
+            title: 'Sample Median',
+            formula: 'Median = (50 + 60) / 2',
+            result: 'Median = 55.0 marks',
+            explanation: 'Mean and median coincide at 55.0.',
+          },
+        ],
+        decision: {
+          testStatisticName: 'Summary',
+          calculatedValue: 55.0,
+          criticalValue: 'Symmetric',
+          decisionRule: 'Mean = Median = 55',
+          conclusion: 'The student marks dataset has a mean of 55, median of 55, and standard deviation of 30.28.',
+          isRejected: false,
+        },
+        chartType: 'histogram',
+        chartExtraData: {
+          intervals: [
+            { lower: 0, upper: 20, label: '0 - 20', midpoint: 10, frequency: 2, relativeFreq: 0.2, cumulativeLess: 2, cumulativeMore: 10 },
+            { lower: 20, upper: 40, label: '20 - 40', midpoint: 30, frequency: 2, relativeFreq: 0.2, cumulativeLess: 4, cumulativeMore: 8 },
+            { lower: 40, upper: 60, label: '40 - 60', midpoint: 50, frequency: 2, relativeFreq: 0.2, cumulativeLess: 6, cumulativeMore: 6 },
+            { lower: 60, upper: 80, label: '60 - 80', midpoint: 70, frequency: 2, relativeFreq: 0.2, cumulativeLess: 8, cumulativeMore: 4 },
+            { lower: 80, upper: 100, label: '80 - 100', midpoint: 90, frequency: 2, relativeFreq: 0.2, cumulativeLess: 10, cumulativeMore: 2 },
+          ],
+          mean: 55,
+          median: 55,
+        },
+        presenterNotes: 'Explain: 10 student scores from 10 to 100. Mean is 55 marks, median is 55 marks. Each bin has exactly 2 student scores.',
+        vivaTip: 'When Mean = Median, the score distribution is perfectly symmetric with zero skewness!',
+      },
+      {
+        id: 'm1_slide_2',
+        module: 'Module I',
+        title: 'Cumulative Frequency Ogives: Student Marks Median',
+        subtitle: 'Less-Than and More-Than Ogives Intersect Exactly at Marks = 55, Count = 5',
+        presenter: 'Pinjari Manoj & Orsu Lokesh',
+        theorySummary: [
+          'Less-Than Ogive: Connects upper class limits with cumulative frequency of students.',
+          'More-Than Ogive: Connects lower class limits with descending cumulative frequency of students.',
+          'Geometric Property: The two curves intersect at Y = N/2 = 5 students, where X = 55 marks (the exact Median!).',
+        ],
+        formulas: [
+          {
+            name: 'Ogive Median Principle',
+            latex: '\\text{Intersection Y-coordinate} = \\frac{N}{2} = \\frac{10}{2} = 5 \\implies X = 55\\text{ marks}',
+            description: 'Graphical determination of median student marks.',
+          },
+        ],
+        datasetDescription: 'Constructed from the cumulative frequencies of the 10 student marks.',
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'N / 2 Median Level',
+            result: 'N / 2 = 10 / 2 = 5 students',
+            explanation: 'The 50th percentile corresponds to cumulative frequency 5.',
+          },
+          {
+            stepNumber: 2,
+            title: 'Curve Intersection',
+            result: 'Intersection = (55 marks, 5 students)',
+            explanation: 'The curves intersect right at marks = 55.',
+          },
+        ],
+        decision: {
+          testStatisticName: 'Median',
+          calculatedValue: 55,
+          criticalValue: 'N/2 = 5',
+          decisionRule: 'Ogive Intersection',
+          conclusion: 'The graphical intersection confirms the sample median is exactly 55 marks.',
+          isRejected: false,
+        },
+        chartType: 'ogive',
+        chartExtraData: {
+          intervals: [
+            { lower: 0, upper: 20, label: '0 - 20', midpoint: 10, frequency: 2, relativeFreq: 0.2, cumulativeLess: 2, cumulativeMore: 10 },
+            { lower: 20, upper: 40, label: '20 - 40', midpoint: 30, frequency: 2, relativeFreq: 0.2, cumulativeLess: 4, cumulativeMore: 8 },
+            { lower: 40, upper: 60, label: '40 - 60', midpoint: 50, frequency: 2, relativeFreq: 0.2, cumulativeLess: 6, cumulativeMore: 6 },
+            { lower: 60, upper: 80, label: '60 - 80', midpoint: 70, frequency: 2, relativeFreq: 0.2, cumulativeLess: 8, cumulativeMore: 4 },
+            { lower: 80, upper: 100, label: '80 - 100', midpoint: 90, frequency: 2, relativeFreq: 0.2, cumulativeLess: 10, cumulativeMore: 2 },
+          ],
+          median: 55,
+        },
+        presenterNotes: 'Show the amber dot where the green and cyan curves cross. The vertical line drops to X = 55, exactly matching our calculated median.',
+        vivaTip: 'Examiner favorite: The ogive intersection provides a visual geometric proof of the median!',
+      },
+    ],
+  },
+
+  // -------------------------------------------------------------
+  // DECK 3: Module IX: Correlation & Regression (Study Hours vs Marks)
+  // -------------------------------------------------------------
+  {
+    id: 'module_9_correlation',
+    title: 'Module IX: Correlation & Regression Analysis',
+    moduleBadge: 'Module IX · Syllabus Topic',
+    description: 'Study Hours vs Exam Marks: X = [1, 2, 3, 4, 5] hours, Y = [2, 4, 6, 8, 10] marks · Karl Pearson’s r = 1.00, Spearman’s ρ = 1.00, Regression Marks = 2 × Hours.',
+    team: [
+      { name: 'Pinjari Manoj', rollNo: '252U1R1193', assignedRole: 'Linear Regression & Karl Pearson' },
+      { name: 'Orsu Lokesh', rollNo: '252U1R1170', assignedRole: 'Spearman’s Rank & Covariance' },
+    ],
+    slides: [
+      {
+        id: 'm9_slide_1',
+        module: 'Module IX',
+        title: 'Karl Pearson’s Correlation: Study Hours vs Exam Marks',
+        subtitle: 'Dataset: Study Hours X = [1..5], Exam Marks Y = [2..10] · Linear Fit Y = 2X',
+        presenter: 'Pinjari Manoj (252U1R1193)',
+        theorySummary: [
+          'Karl Pearson’s correlation coefficient r measures the strength of linear association between student study hours and final examination marks (-1 ≤ r ≤ +1).',
+          'Clean dataset: Exam marks Y are double the study hours X (Marks = 2 × Hours).',
+          'Pearson’s r = 1.00 (perfect positive linear correlation).',
+          'Linear Regression line: Exam Marks = 2 × Study Hours (slope b_yx = 2.0, intercept = 0).',
+        ],
+        formulas: [
+          {
+            name: 'Summary Sums',
+            latex: '\\sum X = 15\\text{ hrs}, \\quad \\sum Y = 30\\text{ marks}, \\quad \\sum X^2 = 55, \\quad \\sum Y^2 = 220, \\quad \\sum XY = 110',
+            description: 'n = 5 students. All sums are small clean integers.',
+          },
+          {
+            name: 'Karl Pearson’s r (Exact 1.0!)',
+            latex: 'r = \\frac{5(110) - (15)(30)}{\\sqrt{[5(55) - 225][5(220) - 900]}} = \\frac{550 - 450}{\\sqrt{50 \\times 200}} = \\frac{100}{\\sqrt{10000}} = \\frac{100}{100} = 1.00',
+            description: 'Numerator is 100, denominator is √10000 = 100. Result: r = 1.00!',
+          },
+          {
+            name: 'Regression Slope & Equation',
+            latex: 'b_{yx} = \\frac{100}{50} = 2.0 \\implies \\text{Marks} = 2 \\times \\text{Hours}',
+            description: 'Clean regression line Marks = 2 × Hours.',
+          },
+        ],
+        datasetDescription: 'Study hours (X) versus exam marks (Y) for n = 5 students: (1 hr, 2 marks), (2 hrs, 4 marks), (3 hrs, 6 marks), (4 hrs, 8 marks), (5 hrs, 10 marks).',
+        rawDataTable: {
+          headers: ['Student', 'Study Hours (X)', 'Exam Marks (Y)', 'X²', 'Y²', 'X · Y'],
+          rows: [
+            ['Student 1', '1 hr', '2 marks', '1', '4', '2'],
+            ['Student 2', '2 hrs', '4 marks', '4', '16', '8'],
+            ['Student 3', '3 hrs', '6 marks', '9', '36', '18'],
+            ['Student 4', '4 hrs', '8 marks', '16', '64', '32'],
+            ['Student 5', '5 hrs', '10 marks', '25', '100', '50'],
+            ['Totals', 'ΣX = 15', 'ΣY = 30', 'ΣX² = 55', 'ΣY² = 220', 'ΣXY = 110'],
+          ],
+        },
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'Calculate Summary Sums',
+            result: 'ΣX = 15, ΣY = 30, ΣX² = 55, ΣY² = 220, ΣXY = 110',
+            explanation: 'Clean numbers computed from the 5 student pairs.',
+          },
+          {
+            stepNumber: 2,
+            title: 'Numerator of Pearson r',
+            formula: 'n\\sum XY - \\sum X \\sum Y = 5(110) - 15(30) = 550 - 450',
+            result: 'Numerator = 100',
+            explanation: 'Exact integer 100.',
+          },
+          {
+            stepNumber: 3,
+            title: 'Denominator of Pearson r',
+            formula: '\\sqrt{[5(55) - 225][5(220) - 900]} = \\sqrt{50 \\times 200} = \\sqrt{10000}',
+            result: 'Denominator = 100',
+            explanation: '√10000 = 100.',
+          },
+          {
+            stepNumber: 4,
+            title: 'Correlation & Regression Equation',
+            formula: 'r = 100 / 100 = 1.00, \\quad b_{yx} = 100 / 50 = 2.0',
+            result: 'r = 1.00, Marks = 2 × Hours',
+            explanation: 'Each additional study hour yields 2 extra exam marks.',
+          },
+        ],
+        decision: {
+          testStatisticName: 'Pearson r',
+          calculatedValue: 1.0,
+          criticalValue: 'r = +1.0',
+          decisionRule: 'Perfect Positive Correlation',
+          conclusion: 'r = 1.00. Student exam marks are perfectly positively correlated with study hours, following the line Marks = 2 × Hours.',
+          isRejected: false,
+        },
+        chartType: 'scatter_regression',
+        chartExtraData: {
+          x: [1, 2, 3, 4, 5],
+          y: [2, 4, 6, 8, 10],
+          pearsonR: 1.0,
+          b_yx: 2.0,
+          intercept: 0,
+        },
+        presenterNotes: 'Manoj speaks: "For correlation, our student dataset is (1,2), (2,4), (3,6), (4,8), (5,10). The numerator of r is 5(110) - 15(30) = 100. The denominator is √(50 × 200) = √10000 = 100. So r = 100 / 100 = 1.0! The regression line is Marks = 2 × Study Hours."',
+        vivaTip: 'Formula tip: When r = 1.0, all points lie exactly on the regression line with zero residual error!',
+      },
+      {
+        id: 'm9_slide_2',
+        module: 'Module IX',
+        title: 'Spearman’s Rank Correlation: Ranking Study Hours vs Marks',
+        subtitle: 'Rank Concordance on 5 Students · All d_i = 0 · ρ = 1.00',
+        presenter: 'Orsu Lokesh (252U1R1170)',
+        theorySummary: [
+          'Spearman’s Rank Correlation evaluates monotonic agreement between ranked variables.',
+          'Formula: ρ = 1 - [6 Σ d_i² / (n(n² - 1))].',
+          'Because students with higher study hours systematically achieve higher exam marks, ranks match identically: R_x = [1, 2, 3, 4, 5] and R_y = [1, 2, 3, 4, 5].',
+          'Difference d_i = R_x - R_y is 0 for every student! Therefore Σ d_i² = 0 and ρ = 1 - 0 = 1.00.',
+        ],
+        formulas: [
+          {
+            name: 'Spearman’s Rank Formula (Zero Error)',
+            latex: '\\rho = 1 - \\frac{6\\sum d_i^2}{n(n^2 - 1)} = 1 - \\frac{6(0)}{5(25 - 1)} = 1 - 0 = 1.00',
+            description: 'Every rank difference d is 0, giving exact ρ = 1.00!',
+          },
+        ],
+        datasetDescription: 'Ordinal ranking on the 5 students comparing study rank against mark rank.',
+        rawDataTable: {
+          headers: ['Student', 'Study Hours', 'Exam Marks', 'Rank Hours (R_x)', 'Rank Marks (R_y)', 'd = R_x - R_y', 'd²'],
+          rows: [
+            ['Student 1', '1 hr', '2 marks', '1', '1', '0', '0'],
+            ['Student 2', '2 hrs', '4 marks', '2', '2', '0', '0'],
+            ['Student 3', '3 hrs', '6 marks', '3', '3', '0', '0'],
+            ['Student 4', '4 hrs', '8 marks', '4', '4', '0', '0'],
+            ['Student 5', '5 hrs', '10 marks', '5', '5', '0', '0'],
+            ['Total', '-', '-', '-', '-', 'Σd = 0', 'Σd² = 0'],
+          ],
+        },
+        steps: [
+          {
+            stepNumber: 1,
+            title: 'Assign Ranks',
+            result: 'R_x = [1, 2, 3, 4, 5], R_y = [1, 2, 3, 4, 5]',
+            explanation: 'Both variables increase strictly monotonically.',
+          },
+          {
+            stepNumber: 2,
+            title: 'Rank Differences (d_i)',
+            result: 'All d_i = 0, \\sum d_i^2 = 0',
+            explanation: 'Zero rank disagreement between study effort and exam score.',
+          },
+          {
+            stepNumber: 3,
+            title: 'Calculate Spearman’s ρ',
+            formula: '\\rho = 1 - \\frac{6(0)}{5(24)} = 1 - 0',
+            result: 'ρ = 1.00',
+            explanation: 'Perfect monotonic agreement in student rankings.',
+          },
+        ],
+        decision: {
+          testStatisticName: 'Spearman ρ',
+          calculatedValue: 1.0,
+          criticalValue: 'ρ = +1.0',
+          decisionRule: 'Perfect Rank Agreement',
+          conclusion: 'Spearman’s Rank Correlation ρ = 1.00, confirming complete monotonic concordance between study hours and student marks.',
+          isRejected: false,
+        },
+        chartType: 'distribution',
+        plotData: {
+          distribution: 'normal',
+          criticalValues: [-1.96, 1.96],
+          calculatedStatistic: 1.0,
+          alpha: 0.05,
+          tailed: 'two_tailed',
+          isRejected: false,
+          decisionText: 'Perfect Monotonicity (ρ = 1.00)',
+        },
+        presenterNotes: 'Lokesh speaks: "For Spearman rank correlation, student ranks in study hours and exam marks match perfectly: 1, 2, 3, 4, 5. The rank difference d is 0 for every student. So Σd² = 0, giving ρ = 1 - 0 = 1.00."',
+        vivaTip: 'Viva Question: When does Pearson’s r equal Spearman’s ρ? Answer: When the relationship between X and Y is strictly linear and monotonic without outliers.',
+      },
+    ],
+  },
+];

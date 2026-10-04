@@ -1,0 +1,6 @@
+{
+  "name": "StatLab: Maths Project & Presentation Studio",
+  "description": "Interactive Probability & Statistics Project Presentation with step-by-step numerical calculations, sample datasets, distribution graphs, and presenter slide decks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
